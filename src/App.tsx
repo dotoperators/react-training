@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+// @flow
 function App() {
   return (
     <div className="App">
@@ -18,7 +18,14 @@ function App() {
         >
           Learn React
         </a>
+        <div>
+      <small>You are running this application in <b>{process.env.NODE_ENV}</b> mode.</small>
+      <form>
+        <input type="hidden" defaultValue={process.env.REACT_APP_NOT_SECRET_CODE} />
+      </form>
+    </div>
       </header>
+      
     </div>
   );
 }
