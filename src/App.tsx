@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 // @flow
 function App() {
+  console.log(process.env)
   return (
     <div className="App">
       <header className="App-header">
@@ -19,9 +20,9 @@ function App() {
           Learn React
         </a>
         <div>
-      <small>You are running this application in <b>{process.env.NODE_ENV}</b> mode.</small>
+      <small>You are running this application in <b>{process.env.REACT_APP_ENV}</b> mode.</small>
       <form>
-        <input type="hidden" defaultValue={process.env.REACT_APP_NOT_SECRET_CODE} />
+        <input type="text" defaultValue={process.env.REACT_APP_API_URL} />
       </form>
     </div>
       </header>
