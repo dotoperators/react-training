@@ -4,6 +4,7 @@ import { Buttons } from './components/Button';
 import CounterHandler from './components/CounterEventHandler';
 import Customer from './components/Customer';
 import FuctionWithParam from './components/FunctionWithParam';
+import Greet from './components/Greet';
 import { Input } from './components/Input';
 import Login from './components/Login';
 import CustomerComponent from './components/StateManagment';
@@ -51,15 +52,22 @@ function App() {
       <div className="row">
         <div className="col-md-12">
           <AuthUser />
-          
+
         </div>
       </div>
+      <Buttons handleClick={(event, id) => {
+        console.log("button clicked", event, id)
+      }} />
+      <Input handleChange={(event) => {
+        console.log("event", event.target.value)
+      }} value='' key='text' />
       {/* <Buttons handleClick={(event, id) => {
         console.log("button clicked", event, id)
       }} />
       <Input handleChange={(event) => {
         console.log("event", event.target.value)
       }} value='' key='text' /> */}
+      <Greet name='Daiapyan'/>
     </div>
   );
 }
