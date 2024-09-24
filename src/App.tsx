@@ -1,6 +1,7 @@
 import './App.css';
 import AuthUser from './components/AuthUser';
 import { Buttons } from './components/Button';
+import { Container } from './components/Container';
 import CounterHandler from './components/CounterEventHandler';
 import Customer from './components/Customer';
 import FuctionWithParam from './components/FunctionWithParam';
@@ -43,31 +44,32 @@ function App() {
           <FuctionWithParam/>
         </div>
       </div> */}
-      {/* <div className="row">
+      <div className="row">
         <div className="col-md-12">
           <Login/>
         </div>
-      </div> */}
+      </div>
       {/* consditional rendering */}
-      <div className="row">
+      {/* <div className="row">
         <div className="col-md-12">
           <AuthUser />
 
         </div>
-      </div>
+      </div> */}
       <Buttons handleClick={(event, id) => {
         console.log("button clicked", event, id)
       }} />
       <Input handleChange={(event) => {
         console.log("event", event.target.value)
-      }} value='' key='text' />
+      }} value='Default' key='text' />
       {/* <Buttons handleClick={(event, id) => {
         console.log("button clicked", event, id)
       }} />
       <Input handleChange={(event) => {
         console.log("event", event.target.value)
       }} value='' key='text' /> */}
-      <Greet name='Daiapyan'/>
+      <Greet name='Daiapyan' />
+      <Container styles={{ border: '1px solid black', padding: '1rem' }} />
     </div>
   );
 }
