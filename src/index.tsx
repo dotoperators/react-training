@@ -1,15 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.css';
+import { LoginContextProvider } from './Stores/loginContext';
+import { SidebarContextProvider } from './Stores/sidebarContext';
+import { LangContextProvider } from './Stores/langContext';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <LangContextProvider>
+      <LoginContextProvider>
+        <SidebarContextProvider>
+          <App />
+        </SidebarContextProvider>
+      </LoginContextProvider>
+    </LangContextProvider>
   </React.StrictMode>
 );
 
