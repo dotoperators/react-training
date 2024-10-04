@@ -10,13 +10,14 @@ import langContextObj from "../../Stores/langContext";
 import { authService } from "../../Api/auth.service";
 
 const Login: React.FC = () => {
+    console.log("test")
     const [loginState, setLoginState] = useState({
         email: '',
         password: '',
         rememberMe: false,
         isLogin: {}
     });
-
+    // const [token, setToken] = useState(null);
     const loginCtx = useContext(LoginContext);
     const langCtx = useContext(langContextObj);
     const userNameRef = useRef<HTMLInputElement>(null);
@@ -32,37 +33,36 @@ const Login: React.FC = () => {
                 [name]: value
             }
         })
-
     }
 
     const loginAPi = async () => {
         try {
             const response: any = await authService.login(loginState)
             authService.setItem('token', response?.data.token)
+            // setToken(response.data.token)
+            hasToken = await authService.getItem('token') || ''
+            if (hasToken !== '') {
+                if (hasToken) {
+                    loginCtx.toggleLogin();
+                    navigate("/dashboard");
+                } else {
+                    // userNameRef.current.focus();
+                    errorMessageRef.current?.setAttribute(
+                        "style",
+                        "display: inline-block;opacity: 1"
+                    );
+                }
+            }
         } catch (error) {
             console.error(error);
         }
     }
 
     let hasToken = '';
-    const handleSubmit = (event: React.FormEvent<HTMLElement>): void => {
+    const handleSubmit = (event: React.FormEvent<HTMLElement>) => {
         event.preventDefault();
-        const email = userNameRef?.current?.value || '';
-        const password = passwordRef?.current?.value || '';
         loginAPi();
-        hasToken = authService.getItem('token') || ''
-        if (hasToken !== '') {
-            if (hasToken) {
-                loginCtx.toggleLogin();
-                navigate("/");
-            } else {
-                // userNameRef.current.focus();
-                errorMessageRef.current?.setAttribute(
-                    "style",
-                    "display: inline-block;opacity: 1"
-                );
-            }
-        }
+
     }
 
     return (

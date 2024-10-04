@@ -1,5 +1,6 @@
-export interface IUser{
-    sno:number,
-    name:string,
-    age:number
+export interface IUser {
+    email?: string,
+    name?: string,
+    createdOn?: Date,
+    modifiedOn?: Date
 }
