@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { userService } from "../../Api/user.services";
 import { IUser, userHeader } from "../../interfaces/IUser";
 
-const Table = () => {
+const Table = ({ submitted }: any) => {
   const { t } = useTranslation();
   const [useTable, setUserTable] = useState<IUser[]>([]);
 
@@ -39,7 +39,7 @@ const Table = () => {
         className={`${classes.table__top__customers} ${classes.table__child}`}
       >
         <div className={classes.table__title}>
-          <p className="subTitle">{t("topCustomers")}</p>
+          {/* <p className="subTitle">{t("topCustomers")}</p> */}
           <Link to="/">{t("viewAll")}</Link>
         </div>
         <CustomTable
@@ -60,6 +60,7 @@ const Table = () => {
           bodyData={useTable.latestOrders.body}
         />
       </div> */}
+
     </section>
   );
 };

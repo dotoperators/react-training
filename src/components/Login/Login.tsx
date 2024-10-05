@@ -1,23 +1,19 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import LoginContext from "../../Stores/loginContext";
-import { ILogin } from "../models/ILogin";
-import Input from "../UI/input/Input";
-import classes from "./Login.module.scss";
-import Button from "../UI/button/Button";
+import React, { useContext, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import langContextObj from "../../Stores/langContext";
+import { useNavigate } from "react-router-dom";
 import { authService } from "../../Api/auth.service";
+import langContextObj from "../../Stores/langContext";
+import LoginContext from "../../Stores/loginContext";
+import classes from "./Login.module.scss";
 
 const Login: React.FC = () => {
-    console.log("test")
     const [loginState, setLoginState] = useState({
         email: '',
         password: '',
         rememberMe: false,
         isLogin: {}
     });
-    // const [token, setToken] = useState(null);
+
     const loginCtx = useContext(LoginContext);
     const langCtx = useContext(langContextObj);
     const userNameRef = useRef<HTMLInputElement>(null);
@@ -62,7 +58,6 @@ const Login: React.FC = () => {
     const handleSubmit = (event: React.FormEvent<HTMLElement>) => {
         event.preventDefault();
         loginAPi();
-
     }
 
     return (
