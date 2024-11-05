@@ -54,6 +54,7 @@ export interface Itable {
     | IOrderTable
     | IUser
   )[];
+  fetched: (page: any,pageSize: any) => void
 }
 
 export interface IOrderTable {

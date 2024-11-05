@@ -1,13 +1,13 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { IRegisterUser } from "../../interfaces/IRegisterUser";
-import { userService } from "../../Api/user.services";
 
 
-const CreateUser: React.FC<any> = ({ onDataSubmit }:any) => {
+const CreateUser: React.FC<any> = ({ onDataSubmit, data = null }: any) => {
     const initialUser: IRegisterUser = {
-        email: '',
-        password: '',
-        name: ''
+        _id: data?._id || '',
+        email: data?.email || '',
+        password: data?.password || '',
+        name: data?.name || ''
     }
     const [User, setUser] = useState<IRegisterUser>(initialUser);
     const [submitted, setSubmitted] = useState<boolean>(false);
@@ -19,6 +19,7 @@ const CreateUser: React.FC<any> = ({ onDataSubmit }:any) => {
 
     const saveUser = () => {
         var data = {
+            _id: User._id,
             email: User.email,
             name: User.name,
             password: User.password,
@@ -69,7 +70,7 @@ const CreateUser: React.FC<any> = ({ onDataSubmit }:any) => {
                             name="name"
                         />
                     </div>
-                    <div className="form-group">
+                    {!data && <div className="form-group" >
                         <label htmlFor="password">Password</label>
                         <input
                             type="text"
@@ -80,7 +81,7 @@ const CreateUser: React.FC<any> = ({ onDataSubmit }:any) => {
                             onChange={handleInputChange}
                             name="password"
                         />
-                    </div>
+                    </div>}
 
                     <button onClick={saveUser} className="btn btn-success">
                         Submit

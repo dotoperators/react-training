@@ -11,33 +11,30 @@ const DashboardPage = () => {
     email: '',
     password: '',
     name: ''
-}
+  }
   const { t } = useTranslation();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [dataFromChild, setDataFromChild] = useState(null);
   const [User, setUser] = useState<IRegisterUser>(initialUser);
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   const handleDataSubmit = (data: any) => {
-    setDataFromChild(data);
     // Make API call
     userService.createUser(data)
-    .then((response: any) => {
+      .then((response: any) => {
         setUser({
-            email: response.data.email,
-            name: response.data.name,
-            password: response.data.password,
+          email: response.data.email,
+          name: response.data.name,
+          password: response.data.password,
         });
-
         setShow(false);
         setSubmitted(true);
-    })
-    .catch((e: Error) => {
+      })
+      .catch((e: Error) => {
         console.log(e);
-    });
+      });
   };
   return (
     <section>
@@ -51,11 +48,11 @@ const DashboardPage = () => {
             <Modal.Title>Insert Form</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <CreateUser onDataSubmit={handleDataSubmit}/>
+            <CreateUser onDataSubmit={handleDataSubmit} />
           </Modal.Body>
         </Modal>
       </div>
-      <DashboardTables submitted={submitted}/>
+      <DashboardTables submitted={submitted} />
     </section>
   )
 }
