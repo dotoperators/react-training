@@ -7,18 +7,22 @@ import reportWebVitals from './reportWebVitals';
 import { LoginContextProvider } from './Stores/loginContext';
 import { SidebarContextProvider } from './Stores/sidebarContext';
 import { LangContextProvider } from './Stores/langContext';
+import { Provider } from 'react-redux';
+import { store } from './Stores/reduxContainer/store';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <LangContextProvider>
-      <LoginContextProvider>
-        <SidebarContextProvider>
-          <App />
-        </SidebarContextProvider>
-      </LoginContextProvider>
-    </LangContextProvider>
+    <Provider store={store}>
+      <LangContextProvider>
+        <LoginContextProvider>
+          <SidebarContextProvider>
+            <App />
+          </SidebarContextProvider>
+        </LoginContextProvider>
+      </LangContextProvider>
+    </Provider>
   </React.StrictMode>
 );
 

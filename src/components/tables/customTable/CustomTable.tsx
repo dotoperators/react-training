@@ -6,10 +6,9 @@ import { userService } from "../../../Api/user.services";
 import { Itable as Props, complex } from "../../../interfaces/Itable";
 import Card from "../../UI/card/Card";
 import CustomModal from "../../UI/modal/Modal";
+import Pagination, { InitialPaginationData } from "../../UI/pagination/Pagination";
 import CreateUser from "../../User/CreateUser";
 import classes from "./CustomTable.module.scss";
-import Dropdown from "../../UI/dropdown/Dropdown";
-import Pagination, { InitialPaginationData } from "../../UI/pagination/Pagination";
 
 
 export type Users = {
@@ -142,9 +141,8 @@ const CustomTable: React.FC<Props> = (props) => {
     setPagination((prev) => ({
       ...prev,
       total: props.limit,
-      // count: props.limit,
     }))
-  }, [props, props.bodyData]);
+  }, [props]);
 
   const { t } = useTranslation();
   const handlePageChange = (data: IPagination) => {
